@@ -1,0 +1,59 @@
+<%-- 
+    Document   : index
+    Created on : 09.02.2012, 0:51:13
+    Author     : Конарх
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+   "http://www.w3.org/TR/html4/loose.dtd">
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>SHibernate demo</title>
+    </head>
+    <body>
+        <h1>Database query</h1>
+        <table border="1">
+        <c:forEach var="elem" items="${elements}">
+            <tr>
+                <td>
+                    <fmt:formatDate dateStyle="long" type="date" value="${elem.date}"/>
+                    <fmt:formatDate type="time" value="${elem.time}"/>
+                </td>
+                <td>
+                    <c:out value="${elem.name}"/>
+                </td>
+                <%-- <td>
+                    <c:out value="${elem.review}"/>
+                </td>
+                --%>
+                <td>
+                    <form method="post" action="changeReview">
+                        <input type="hidden" name="id" value="<c:out value="${elem.id}"/>">
+                        <input type="input" name="review" value="<c:out value="${elem.review}"/>" size="100">
+                        <input type="submit" value="Изменить">
+                    </form>
+                </td>
+            </tr>
+        </c:forEach>
+           
+            <tr>
+                <td align="left">Добавить</td>
+                
+                <form method="post" action="changeReview">
+                    <td>
+                    <input type="text" name="name">
+                    </td>
+                    <td>
+                    <input type="text" name="text" size="100">
+                    <input type="submit" value="Добавить">
+                    </td>
+                 </form>
+            </tr>
+        </table>
+    </body>
+</html>
